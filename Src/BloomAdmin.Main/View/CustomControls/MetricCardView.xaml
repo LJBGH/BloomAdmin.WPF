@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:BloomAdmin.Main.View.CustomControls"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             MinHeight="90"
-             MinWidth="160"
+             MinHeight="120"
+             MinWidth="180"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch" >
     <UserControl.Resources>
@@ -19,7 +19,7 @@
         </Border.Effect>
         <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MetricCardView}}}">
             <!--图表-->
-            <lvc:CartesianChart Margin="0,0,0,40">
+            <lvc:CartesianChart Margin="0,0,0,35">
                 <lvc:CartesianChart.Series>
                     <lvc:LineSeries
                      Stroke="{Binding StrokeColor}"
