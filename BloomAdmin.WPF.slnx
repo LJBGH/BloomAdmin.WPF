@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Src/BloomAdmin.Controls/BloomAdmin.Controls.csproj" Id="4ecdf0c0-b296-4127-ae7e-ea0d38018d2a" />
+  <Project Path="Src/BloomAdmin.Main/BloomAdmin.Main.csproj" />
+</Solution>

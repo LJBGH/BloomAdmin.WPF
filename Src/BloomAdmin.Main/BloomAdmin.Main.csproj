@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<!-- pack URI 里的程序集名；若改名请与之一致 -->
+		<AssemblyName>BloomAdmin.Main</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ApplicationIcon>Assets\app.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lazy.Captcha.Core" Version="2.2.4" />
+		<PackageReference Include="LiveCharts.Wpf.NetCore3" Version="0.9.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.7" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.7" />
+	</ItemGroup>
+
+	<!-- 嵌入程序集：XAML 里用 /Assets/... 或 /程序集名;component/Assets/... -->
+	<ItemGroup>
+		<Resource Include="Assets\Fonts\iconfont.ttf">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Assets\app.ico" />
+		<Resource Include="Assets\Images\Logo.png" />
+		<Resource Include="Assets\Images\Icon.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Config\appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

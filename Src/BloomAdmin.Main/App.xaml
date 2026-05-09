@@ -1,0 +1,10 @@
+﻿<Application x:Class="BloomAdmin.Main.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BloomAdmin.Main">
+    <!--App启动时已经设置了启动窗口，不需要在这里设置了-->
+    <!--StartupUri="/View/LoginView.xaml"-->
+    <Application.Resources>
+
+    </Application.Resources>
+</Application>
