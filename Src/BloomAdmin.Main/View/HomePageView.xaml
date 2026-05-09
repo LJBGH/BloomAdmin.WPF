@@ -8,7 +8,7 @@
              xmlns:cuscon="clr-namespace:BloomAdmin.Main.View.CustomControls"
              mc:Ignorable="d" 
              FontFamily="Microsoft YaHei" FontWeight = "ExtraLight"
-             d:MinHeight="600" d:MinWidth="900">
+             d:DesignHeight="500" d:DesignWidth ="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <FontFamily x:Key="IconFont">pack://application:,,,/BloomAdmin.Main;component/Assets/Fonts/iconfont.ttf#iconfont</FontFamily>
@@ -17,12 +17,12 @@
 
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.28*"/>
-            <RowDefinition Height="0.60*"/>
-            <RowDefinition Height="0.12*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.55*"/>
+            <RowDefinition Height="0.20*"/>
         </Grid.RowDefinitions>
         <UniformGrid Columns="4">
-            <cuscon:MetricCard  Margin="5" 
+            <cuscon:MetricCardView  Margin="5" 
                                 TopIcon="&#xe662;"
                                 FillColor="#336ED25A"
                                 StrokeColor="Green"
@@ -31,7 +31,7 @@
                                 ButtomTextContent1="CPU使用情况"
                                 ButtomTextContent2="25%"
                                 ChartValues = "{Binding DefaultData1}"/>
-            <cuscon:MetricCard  Margin="5" 
+            <cuscon:MetricCardView  Margin="5" 
                                 TopIcon="&#xe662;"
                                 FillColor="#33F7C75F"
                                 StrokeColor="Orange"
@@ -40,7 +40,7 @@
                                 ButtomTextContent1="内存占用情况"
                                 ButtomTextContent2="70%"
                                 ChartValues = "{Binding DefaultData2}"/>
-            <cuscon:MetricCard  Margin="5" 
+            <cuscon:MetricCardView  Margin="5" 
                                 TopIcon="&#xe662;"
                                 FillColor="#33F36E50"
                                 StrokeColor="Red"
@@ -49,7 +49,7 @@
                                 ButtomTextContent1="营收增长率"
                                 ButtomTextContent2="41.2%"
                                 ChartValues = "{Binding DefaultData3}"/>
-                    <cuscon:MetricCard  Margin="5" 
+            <cuscon:MetricCardView  Margin="5" 
                                 TopIcon="&#xe662;"
                                 FillColor="#3350B4F3"
                                 StrokeColor="Blue"
@@ -64,21 +64,176 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid>
+            <Grid Margin="5,3">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Margin="5" Background="Blue"></StackPanel>
-                <StackPanel Margin="5" Grid.Row="1" Background="Yellow"></StackPanel>
+                <Grid >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="学院访问情况监控" VerticalAlignment="Center" FontWeight="Bold" FontSize="15"/>
+                        <TextBlock Text="详情" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="Blue">
+                            <Hyperlink ></Hyperlink>
+                        </TextBlock>
+                        <Border Grid.Row="1" Background="White" CornerRadius="10">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FF353558" BlurRadius="10" ShadowDepth="2"/>
+                            </Border.Effect>
+                            <Grid>
+                                <StackPanel Margin="20,5,0,0" VerticalAlignment="Top">
+                                    <TextBlock Text="当前使用率" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13"></TextBlock>
+                                    <TextBlock Text="+120%" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Margin="20,0,0,5" VerticalAlignment="Bottom">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="#336ED25A" CornerRadius="4" Width="25" Height="25">
+                                            <TextBlock Text="&#xe662;" 
+                                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                FontFamily="{StaticResource IconFont}" Foreground="Green"/>
+                                        </Border>
+                                        <TextBlock Margin="10,0,0,0" Text="40%" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Text="最高使用率" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13"></TextBlock>
+                                </StackPanel>
+                                <lvc:CartesianChart Margin="100,0,0,0" MinHeight="90">
+                                    <lvc:CartesianChart.Series>
+                                        <lvc:LineSeries
+                                             Stroke="Green"
+                                             Fill="#336ED25A"
+                                             LineSmoothness ="0"  
+                                             PointGeometrySize="10"
+                                             Values="58,39,67.89,70,20,54,30,88" />
+                                    </lvc:CartesianChart.Series>
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis ShowLabels="False"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis ShowLabels="True"
+                                                      MinValue="0" MaxValue="100"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisY>
+                                </lvc:CartesianChart>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="朝夕教育" VerticalAlignment="Center" FontWeight="Bold" FontSize="15"/>
+                        <Border Grid.Row="1" Background="#FF1964DE" CornerRadius="10">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FF353558" BlurRadius="10" ShadowDepth="2"/>
+                            </Border.Effect>
+                            <Grid Margin="10,10,0,0">
+                                <TextBlock Text="嗨小伙伴们!" Foreground="White" FontSize="13"></TextBlock>
+                                <Grid Margin="0,20,10,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" 
+                                               Foreground="#FFB7B1B1"
+                                               LineHeight="20"
+                                               TextWrapping="Wrap"
+                                               Text="    武汉朝夕教育科技有限公司成立于2019年。总部位于武汉市汉阳区人信汇人信大厦1502室。朝夕教育，专注于IT类在线教育，注重服务与口碑，解决升职与加薪难题。课程体系覆盖C#/.NET零基础就业、进阶高级开发、蜕变架构师全周期，以及上位机、AutoCAD、Java进阶等，致力于打造高品质在线教育，赋能IT人。升职加薪，只争朝夕，以梦为马，不负韶华！" >
+                                    </TextBlock>
+                                    <Image Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Width="50" Height="50"
+                                           Source="/Assets/Images/Logo.png"></Image>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Border Grid.Column="1" Margin="5" CornerRadius="10" Background="Green">
+            <Border Grid.Column="1" Margin="5" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#FF353558" BlurRadius="10" ShadowDepth="2"/>
+                </Border.Effect>
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE4F9D5" Offset ="0.5"/>
+                        <GradientStop Color="#FF4FD870" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
             </Border>
         </Grid>
-        <Grid Grid.Row="2">
-            <StackPanel>
-                <TextBlock Text="这是一个文本块" Foreground="White" FontSize="20" FontWeight="Bold" Margin="5"/>
-            </StackPanel>
+        <Grid Grid.Row="2" Margin="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="课程总览" VerticalAlignment="Top" HorizontalAlignment="Left"
+                       Foreground="Black" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Grid.Row="0" Text="详情" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="Green">
+                <Hyperlink ></Hyperlink>
+            </TextBlock>
+            <Border Grid.Row="1" CornerRadius="5" Background="White">
+                <Grid Height="70">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.20*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="0.55*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+                    <Grid Grid.Column="2">
+                        <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
+                            <lvc:PieChart.Series>
+                                <lvc:PieSeries Title="云课堂" Values="70"/>
+                                <lvc:PieSeries Title="B站" Values="30"/>
+                                <lvc:PieSeries Title="知乎" Values="10"/>
+                                <lvc:PieSeries Title="抖音" Values="40"/>
+                                <lvc:PieSeries Title="博客" Values="8"/>
+                            </lvc:PieChart.Series>
+                            <lvc:PieChart.ChartLegend>
+                                <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
+                            </lvc:PieChart.ChartLegend>
+                            <lvc:PieChart.DataTooltip >
+                                <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
+                            </lvc:PieChart.DataTooltip>
+                        </lvc:PieChart>
+                    </Grid>
+                    <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+
+                    <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
+                        <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                       ItemName="云课堂"
+                                                       ItemCount= "265"
+                                                       ItemStatus="1"
+                                                       ItemPercent="168%"/>
+                        <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                       ItemName="B站"
+                                                       ItemCount= "84"
+                                                       ItemStatus="1"
+                                                       ItemPercent="12%"/>
+                        <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                       ItemName="知乎"
+                                                       ItemCount= "30"
+                                                       ItemStatus="2"
+                                                       ItemPercent="13%"/>
+                        <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                       ItemName="抖音"
+                                                       ItemCount= "185"
+                                                       ItemStatus="1"
+                                                       ItemPercent="211%"/>
+                        <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                       ItemName="博客"
+                                                       ItemCount= "30"
+                                                       ItemStatus="2"
+                                                       ItemPercent="9%"/>
+                    </UniformGrid>
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

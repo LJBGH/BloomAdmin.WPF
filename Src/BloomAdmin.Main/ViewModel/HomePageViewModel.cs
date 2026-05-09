@@ -5,8 +5,6 @@ namespace BloomAdmin.Main.ViewModel
 {
     public class HomePageViewModel : NotifyBase
     {
-
-
         private ChartValues<double> _defaultData1;
 
         public ChartValues<double> DefaultData1
@@ -37,7 +35,6 @@ namespace BloomAdmin.Main.ViewModel
             get { return _defaultData4; }
             set { _defaultData4 = value; this.DoNotify(); }
         }
-
 
         public HomePageViewModel()
         {

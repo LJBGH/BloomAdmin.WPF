@@ -10,7 +10,10 @@
     <Compile Update="View\CoursePageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\CustomControls\MetricCard.xaml.cs">
+    <Compile Update="View\CustomControls\CourseOverviewItemView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\CustomControls\MetricCardView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\HomePageView.xaml.cs">

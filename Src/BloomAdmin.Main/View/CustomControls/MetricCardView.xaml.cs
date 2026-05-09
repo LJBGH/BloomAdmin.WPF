@@ -8,9 +8,9 @@ namespace BloomAdmin.Main.View.CustomControls
     /// <summary>
     /// MetricCard.xaml 的交互逻辑
     /// </summary>
-    public partial class MetricCard : UserControl
+    public partial class MetricCardView : UserControl
     {
-        public MetricCard()
+        public MetricCardView()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace BloomAdmin.Main.View.CustomControls
             set => SetValue(StrokeColorProperty, value);
         }
         public static readonly DependencyProperty StrokeColorProperty =
-            DependencyProperty.Register("StrokeColor", typeof(Brush), typeof(MetricCard), new PropertyMetadata(Brushes.Green));
+            DependencyProperty.Register("StrokeColor", typeof(Brush), typeof(MetricCardView), new PropertyMetadata(Brushes.Green));
 
 
         // 填充颜色
@@ -33,7 +33,7 @@ namespace BloomAdmin.Main.View.CustomControls
             set => SetValue(FillColorProperty, value);
         }
         public static readonly DependencyProperty FillColorProperty =
-            DependencyProperty.Register("FillColor", typeof(Brush), typeof(MetricCard), new PropertyMetadata(Brushes.Gray));
+            DependencyProperty.Register("FillColor", typeof(Brush), typeof(MetricCardView), new PropertyMetadata(Brushes.Gray));
 
 
         // 上方字体图标
@@ -44,7 +44,7 @@ namespace BloomAdmin.Main.View.CustomControls
         }
 
         public static readonly DependencyProperty TopIconProperty =
-                    DependencyProperty.Register("TopIcon", typeof(string), typeof(MetricCard), new PropertyMetadata("\uE662"));
+                    DependencyProperty.Register("TopIcon", typeof(string), typeof(MetricCardView), new PropertyMetadata("\uE662"));
 
 
         // 上方字体内容
@@ -54,7 +54,7 @@ namespace BloomAdmin.Main.View.CustomControls
             set => SetValue(TopTextContentProperty, value);
         }
         public static readonly DependencyProperty TopTextContentProperty =
-            DependencyProperty.Register("TopTextContent", typeof(string), typeof(MetricCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("TopTextContent", typeof(string), typeof(MetricCardView), new PropertyMetadata(string.Empty));
 
 
         // 底部字体图标
@@ -65,7 +65,7 @@ namespace BloomAdmin.Main.View.CustomControls
         }
 
         public static readonly DependencyProperty ButtomIconProperty =
-                    DependencyProperty.Register("ButtomIcon", typeof(string), typeof(MetricCard), new PropertyMetadata("\uE662"));
+                    DependencyProperty.Register("ButtomIcon", typeof(string), typeof(MetricCardView), new PropertyMetadata("\uE662"));
 
         // 底部字体内容
         public string ButtomTextContent1
@@ -74,7 +74,7 @@ namespace BloomAdmin.Main.View.CustomControls
             set => SetValue(ButtomTextContentProperty1, value);
         }
         public static readonly DependencyProperty ButtomTextContentProperty1 =
-            DependencyProperty.Register("ButtomTextContent1", typeof(string), typeof(MetricCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("ButtomTextContent1", typeof(string), typeof(MetricCardView), new PropertyMetadata(string.Empty));
 
         // 底部字体内容2
         public string ButtomTextContent2
@@ -83,7 +83,7 @@ namespace BloomAdmin.Main.View.CustomControls
             set => SetValue(ButtomTextContentProperty2, value);
         }
         public static readonly DependencyProperty ButtomTextContentProperty2 =
-            DependencyProperty.Register("ButtomTextContent2", typeof(string), typeof(MetricCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("ButtomTextContent2", typeof(string), typeof(MetricCardView), new PropertyMetadata(string.Empty));
 
 
 
@@ -95,7 +95,7 @@ namespace BloomAdmin.Main.View.CustomControls
         }
 
         public static readonly DependencyProperty XShowLabelsProperty =
-            DependencyProperty.Register("XShowLabels", typeof(bool), typeof(MetricCard), new PropertyMetadata(false));
+            DependencyProperty.Register("XShowLabels", typeof(bool), typeof(MetricCardView), new PropertyMetadata(false));
 
         public bool YShowLabels
         {
@@ -104,7 +104,7 @@ namespace BloomAdmin.Main.View.CustomControls
         }
 
         public static readonly DependencyProperty YShowLabelsProperty =
-            DependencyProperty.Register("YShowLabels", typeof(bool), typeof(MetricCard), new PropertyMetadata(false));
+            DependencyProperty.Register("YShowLabels", typeof(bool), typeof(MetricCardView), new PropertyMetadata(false));
 
 
         // 值绑定
@@ -118,7 +118,7 @@ namespace BloomAdmin.Main.View.CustomControls
             DependencyProperty.Register(
                 "ChartValues",
                 typeof(ChartValues<double>),
-                typeof(MetricCard),
+                typeof(MetricCardView),
                 new PropertyMetadata(new ChartValues<double> { 8, 93, 60, 5, 6, 10 }));
     }
 }

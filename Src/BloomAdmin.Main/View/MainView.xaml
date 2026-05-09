@@ -136,7 +136,7 @@
         </EventTrigger>
     </Window.Triggers>
 
-    <Border Margin="5" Background="White" CornerRadius="20" >
+    <Border Margin="5" Background="#FFF1F1F1" CornerRadius="20" >
         <Border.Effect>
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="20" Opacity="0.3" Direction="0"/>
         </Border.Effect>
@@ -145,7 +145,7 @@
                         MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Gray"/>
+                        <GradientStop Color="#FF4CA8FD"/>
                         <GradientStop Color="#FF0061FF" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
@@ -209,7 +209,7 @@
                              VerticalAlignment="Center" 
                              HorizontalAlignment="Right"
                              Foreground="White"/>
-                <ContentControl Grid.Row="2" Margin="0,15"
+                <ContentControl Grid.Row="2" Margin="0,15,0,0"
                                     Content = "{Binding MainContent}">
                 </ContentControl>
             </Grid>
