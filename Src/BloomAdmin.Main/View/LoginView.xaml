@@ -80,45 +80,31 @@
                     </Style>
 
                     <!-- 验证码：自定义模板，仅边框 + 图片，无默认按钮底纹 -->
-                    <Style x:Key="CaptchaViewBtn" TargetType="Button">
-                        <Setter Property="Margin" Value="10,0,0,0"/>
-                        <Setter Property="Grid.Column" Value="2"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="Width" Value="100"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <!--<Setter Property="FocusVisualStyle" Value="{x:Null}"/>-->
-                        <Setter Property="Background" Value="#FF5A5959"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="CaptchaFrame"
-                                            Background="Transparent"
-                                            BorderBrush="#DDDDDD"
-                                            BorderThickness="1"
-                                            CornerRadius="10"
-                                            ClipToBounds="True"
-                                            SnapsToDevicePixels="True">
-                                        <Image x:Name="CaptchaImg"
-                                               Source="{Binding LoginModel.CaptchaImage}"
-                                               Stretch="UniformToFill"
-                                               RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="CaptchaFrame" Property="BorderBrush" Value="#BBBBBB"/>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="CaptchaImg" Property="Opacity" Value="0.85"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
+                    <ControlTemplate TargetType="Button" x:Key="CaptchaViewTemplete">
+                        <Grid>
+                            <!-- 默认隐藏文字 -->
+                            <TextBlock x:Name="DefaultText"
+                               Text="{TemplateBinding Tag}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="15"
+                               Foreground="Green"
+                               Visibility="Collapsed"/>
+                            <!-- 默认显示图片（即使为 null，也占位）-->
+                            <Image x:Name="CaptchaImg"
+                               Source="{Binding LoginModel.CaptchaImage}"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Visibility="Visible"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- 仅当图片为 null 时：显示文字，隐藏图片 -->
+                            <Trigger SourceName="CaptchaImg" Property="Source" Value="{x:Null}">
+                                <Setter TargetName="DefaultText" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="CaptchaImg" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
                     <!--密码显示隐藏按钮样式-->
                     <ControlTemplate TargetType="ToggleButton" x:Key="EyeToggleButtonTemplate">
                         <Border x:Name="Chrome" CornerRadius="10">
@@ -283,7 +269,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="35"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="105"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource LoginRowIcon}" Text="&#xe708;"/>
                         <TextBox Text="{Binding LoginModel.CaptchaCode, UpdateSourceTrigger=PropertyChanged}"
@@ -293,8 +279,10 @@
                                   CommandParameter="{Binding ElementName=window}"/>
                             </TextBox.InputBindings>
                         </TextBox>
-                        <Button Style="{StaticResource CaptchaViewBtn}"
-                                Command="{Binding CaptchaCommand}"/>
+                        <Button Grid.Column ="2"
+                                Template="{StaticResource CaptchaViewTemplete}"
+                                Command="{Binding CaptchaCommand}"
+                                Tag="点击刷新"/>
                     </Grid>
                 </Border>
                 <Button Grid.Row="3" Height="40" Content="登     录"
