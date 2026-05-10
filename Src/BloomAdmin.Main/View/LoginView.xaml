@@ -57,6 +57,15 @@
                         <Setter Property="Height" Value="30"/>
                         <Setter Property="Background" Value="Transparent"/>
                     </Style>
+                    <Style x:Key="LoginRowPasswordTextBox" TargetType="TextBox">
+                        <Setter Property="Margin" Value="10,0,0,0"/>
+                        <Setter Property="Grid.Column" Value="1"/>
+                        <Setter Property= "VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="5,0,0,0"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
                     <!-- 验证码输入框 -->
                     <Style x:Key="CaptchaInputTextBox" TargetType="TextBox">
                         <Setter Property="Margin" Value="10,0,0,0"/>
@@ -79,8 +88,8 @@
                         <Setter Property="Width" Value="100"/>
                         <Setter Property="Height" Value="40"/>
                         <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                        <Setter Property="Background" Value="Transparent"/>
+                        <!--<Setter Property="FocusVisualStyle" Value="{x:Null}"/>-->
+                        <Setter Property="Background" Value="#FF5A5959"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="Padding" Value="0"/>
                         <Setter Property="Template">
@@ -90,7 +99,7 @@
                                             Background="Transparent"
                                             BorderBrush="#DDDDDD"
                                             BorderThickness="1"
-                                            CornerRadius="4"
+                                            CornerRadius="10"
                                             ClipToBounds="True"
                                             SnapsToDevicePixels="True">
                                         <Image x:Name="CaptchaImg"
@@ -110,47 +119,23 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                    <!-- 眼睛切换按钮：默认模板不响应 Style 里对 Background 的悬浮，须在模板内改 Chrome -->
-                    <Style x:Key="EyeToggleButton" TargetType="ToggleButton">
-                        <Setter Property="Margin" Value="2,0"/>
-                        <Setter Property="FontFamily" Value="{StaticResource IconFont}"/>
-                        <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="Grid.Column" Value="2"/>
-                        <Setter Property= "VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Height" Value="30"/>
-                        <Setter Property="Width" Value="30"/>
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="Foreground" Value="#8D4C4747"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ToggleButton">
-                                    <Border x:Name="Chrome"
-                                   Background="{TemplateBinding Background}"
-                                   CornerRadius="4">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <!-- 后声明的 Trigger 覆盖同一属性；顺序：按下 > 悬浮 > 选中 -->
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter TargetName="Chrome" Property="Background" Value="#FFE0E0E0"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Chrome" Property="Background" Value="#FFE8E8E8"/>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="Chrome" Property="Background" Value="#FFD0D0D0"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="False">
-                                            <Setter TargetName="Chrome" Property="Opacity" Value="0.5"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
+                    <!--密码显示隐藏按钮样式-->
+                    <ControlTemplate TargetType="ToggleButton" x:Key="EyeToggleButtonTemplate">
+                        <Border x:Name="Chrome" CornerRadius="10">
+                            <TextBlock x:Name="Icon" 
+                                   FontFamily="{StaticResource IconFont}" 
+                                   FontSize="20"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Text="&#xe611;"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Icon" Property="Text" Value="&#xe610;"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
                     <!-- 其他登录Icon -->
                     <Style x:Key="OtherLoginIcon" TargetType="TextBlock">
                         <Setter Property="Grid.Column" Value="0"/>
@@ -195,20 +180,6 @@
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
-        <!--<ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
-            <Border Background="Transparent" Name="back"  CornerRadius="15">
-                <Path Data="M0 0 12 12M0 12 12 0" Stroke="White" StrokeThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Path>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="back" Property="Background" Value="#22FFFFFF"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="back" Property="Background" Value="#44FFFFFF"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>-->
     </Window.Resources>
     <Border Margin="5,5" Background="White" CornerRadius="15"
              MouseLeftButtonDown="Border_MouseLeftButtonDown">
@@ -282,15 +253,29 @@
                             <ColumnDefinition Width="35"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource LoginRowIcon}" Text="&#xe623;"/>
-                        <PasswordBox Style="{StaticResource LoginRowPasswordBox}" 
-                                     common:PasswordHelper.Attach="True" 
-                                     common:PasswordHelper.Password="{Binding LoginModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <PasswordBox Name="PasswordBox"
+                            Style="{StaticResource LoginRowPasswordBox}" 
+                            common:PasswordHelper.Attach="True" 
+                            common:PasswordHelper.Password="{Binding LoginModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <PasswordBox.InputBindings>
                                 <KeyBinding Key="Enter" Command="{Binding LoginCommand}"
-                                  CommandParameter="{Binding ElementName=window}"/>
+                                CommandParameter="{Binding ElementName=window}"/>
                             </PasswordBox.InputBindings>
                         </PasswordBox>
-                        <ToggleButton Style="{StaticResource EyeToggleButton}" Content="&#xe611;" KeyboardNavigation.IsTabStop="False"/>
+                        <TextBox Name="PasswordTextBox"
+                                Text="{Binding LoginModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Style="{StaticResource LoginRowPasswordTextBox}"
+                                Visibility="Hidden">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding LoginCommand}"
+                                CommandParameter="{Binding ElementName=window}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <ToggleButton Grid.Column="2" 
+                                      Template="{StaticResource EyeToggleButtonTemplate}" 
+                                      KeyboardNavigation.IsTabStop="False"
+                                      Checked="ToggleButton_Checked" 
+                                      Unchecked="ToggleButton_Unchecked"/>
                     </Grid>
                 </Border>
                 <Border Grid.Row="2" Style="{StaticResource LoginInputRowBorder}">
@@ -314,7 +299,8 @@
                 </Border>
                 <Button Grid.Row="3" Height="40" Content="登     录"
                         Style="{StaticResource LoginPrimaryButton}"
-                        Command="{Binding LoginCommand}"/>
+                        Command="{Binding LoginCommand}"
+                        KeyboardNavigation.IsTabStop="False"/>
                 <TextBlock Grid.Row="4" Height="20"
                            Text="{Binding ErrorMessage}"
                            FontSize="12" 
@@ -336,7 +322,7 @@
                     <Border Grid.Column="2" BorderBrush="#DDD" BorderThickness="0,0,0,1" VerticalAlignment="Center"></Border>
                     <TextBlock Grid.Column="1" Text="OR" Foreground="#DDD" Margin="5" VerticalAlignment="Center"></TextBlock>
                 </Grid>
-                <UniformGrid Grid.Row="1" Columns="5" Margin="30,0">
+                <UniformGrid Grid.Row="1" Columns="5" Margin="30,0" KeyboardNavigation.IsTabStop="False">
                     <TextBlock  Style="{StaticResource OtherLoginIcon}" Text="&#xe654;"></TextBlock>
                     <TextBlock></TextBlock>
                     <TextBlock Style="{StaticResource OtherLoginIcon}" Text="&#xe62c;"></TextBlock>

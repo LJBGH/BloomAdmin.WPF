@@ -31,5 +31,17 @@ namespace BloomAdmin.Main.View
         {
             this.DragMove();
         }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            this.PasswordBox.Visibility = Visibility.Hidden;
+            this.PasswordTextBox.Visibility = Visibility.Visible;
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.PasswordBox?.Visibility = Visibility.Visible;
+            this.PasswordTextBox?.Visibility = Visibility.Hidden;
+        }
     }
 }

@@ -12,7 +12,7 @@
         <FontFamily x:Key="IconFont">pack://application:,,,/BloomAdmin.Main;component/Assets/Fonts/iconfont.ttf#iconfont</FontFamily>
         <ControlTemplate TargetType="RadioButton" x:Key="CategoryRadioButtonTemplate">
             <Grid Background="Transparent">
-                <Border CornerRadius="5" Background="Gray" x:Name="back">
+                <Border CornerRadius="5" Background="#CC808080" x:Name="back">
                     <TextBlock Margin="10,3" Text="{TemplateBinding Content}" 
                                VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
                 </Border>
@@ -167,7 +167,7 @@
                                                         </ItemsControl.ItemsPanel>
                                                         <ItemsControl.ItemTemplate>
                                                             <DataTemplate>
-                                                                <Border Margin="10,0" Background="Gray" CornerRadius="5" >
+                                                                <Border Margin="10,0" Background="#CC808080" CornerRadius="5" >
                                                                     <TextBlock Margin="8,3" Text="{Binding}"></TextBlock>
                                                                 </Border>
                                                             </DataTemplate>
