@@ -32,6 +32,9 @@
 		<Resource Include="Assets\app.ico" />
 		<Resource Include="Assets\Images\Logo.png" />
 		<Resource Include="Assets\Images\Icon.jpg" />
+		<Resource Include="Assets\Images\Img1.jpg" />
+		<Resource Include="Assets\Images\Img2.jpg" />
+		<Resource Include="Assets\Images\Img3.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

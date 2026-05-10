@@ -25,6 +25,14 @@ namespace BloomAdmin.Main.View
         private void btnMax_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.Main_Header.CornerRadius = new CornerRadius(0);
+            }
+            else
+            {
+                this.Main_Header.CornerRadius = new CornerRadius(20, 20, 0, 0);
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BloomAdmin.Main.Config;
 using BloomAdmin.Main.DataAccess.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BloomAdmin.Main.DataAccess
 {
@@ -10,7 +11,24 @@ namespace BloomAdmin.Main.DataAccess
         {
         }
 
+        public AppDbContext()
+        {
+        }
+
         public DbSet<UserEntity> Users { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var sqlServerOptions = optionsBuilder.UseSqlServer(
+                        AppConfig.DbCoonString ?? throw new InvalidOperationException("未找到数据库连接字符串"),
+                        sqlServerOptionsAction: sqlServerOptions =>
+                        {
+                            sqlServerOptions.CommandTimeout(300);
+                        });
+            //开启敏感数据日志
+            sqlServerOptions.EnableSensitiveDataLogging();
+            base.OnConfiguring(optionsBuilder);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

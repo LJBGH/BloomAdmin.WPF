@@ -173,8 +173,8 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="Chrome"
-               Background="{TemplateBinding Background}"
-               CornerRadius="6">
+                           Background="{TemplateBinding Background}"
+                           CornerRadius="6">
                                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                     <ControlTemplate.Triggers>

@@ -171,191 +171,258 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="课程总览" VerticalAlignment="Top" HorizontalAlignment="Left"
-                       Foreground="Black" FontSize="15" FontWeight="Bold"/>
-                <TextBlock Grid.Row="0" Text="详情" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="Green">
-                <Hyperlink ></Hyperlink>
-                </TextBlock>
-                <StackPanel Grid.Row="1">
-                    <Border CornerRadius="5" Background="White">
-                        <Grid Height="70">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.20*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="0.25*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="0.55*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                            <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
-                            <Grid Grid.Column="2">
-                                <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
-                                    <lvc:PieChart.Series>
-                                        <lvc:PieSeries Title="云课堂" Values="70"/>
-                                        <lvc:PieSeries Title="B站" Values="30"/>
-                                        <lvc:PieSeries Title="知乎" Values="10"/>
-                                        <lvc:PieSeries Title="抖音" Values="40"/>
-                                        <lvc:PieSeries Title="博客" Values="8"/>
-                                    </lvc:PieChart.Series>
-                                    <lvc:PieChart.ChartLegend>
-                                        <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
-                                    </lvc:PieChart.ChartLegend>
-                                    <lvc:PieChart.DataTooltip >
-                                        <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
-                                    </lvc:PieChart.DataTooltip>
-                                </lvc:PieChart>
-                            </Grid>
-                            <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
-
-                            <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="云课堂"
-                                                  ItemCount= "265"
-                                                  ItemStatus="1"
-                                                  ItemPercent="168%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="B站"
-                                                  ItemCount= "84"
-                                                  ItemStatus="1"
-                                                  ItemPercent="12%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="知乎"
-                                                  ItemCount= "30"
-                                                  ItemStatus="2"
-                                                  ItemPercent="13%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="抖音"
-                                                  ItemCount= "185"
-                                                  ItemStatus="1"
-                                                  ItemPercent="211%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="博客"
-                                                  ItemCount= "30"
-                                                  ItemStatus="2"
-                                                  ItemPercent="9%"/>
-                            </UniformGrid>
-                        </Grid>
+                <TextBlock Grid.Row="0" Text="课程总览" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="Black" FontSize="15" FontWeight="Bold"/>
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Border  Background="Gray" CornerRadius="10" Width="40" Height="20" VerticalAlignment="Center">
+                        <Button Background="Transparent" BorderThickness ="0"  Foreground="Green" Content="刷新" 
+                                Command="{Binding CourseCommand}"></Button>
                     </Border>
-                    <Border CornerRadius="5" Background="White">
-                        <Grid Height="70">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.20*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="0.25*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="0.55*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                            <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
-                            <Grid Grid.Column="2">
-                                <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
-                                    <lvc:PieChart.Series>
-                                        <lvc:PieSeries Title="云课堂" Values="70"/>
-                                        <lvc:PieSeries Title="B站" Values="30"/>
-                                        <lvc:PieSeries Title="知乎" Values="10"/>
-                                        <lvc:PieSeries Title="抖音" Values="40"/>
-                                        <lvc:PieSeries Title="博客" Values="8"/>
-                                    </lvc:PieChart.Series>
-                                    <lvc:PieChart.ChartLegend>
-                                        <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
-                                    </lvc:PieChart.ChartLegend>
-                                    <lvc:PieChart.DataTooltip >
-                                        <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
-                                    </lvc:PieChart.DataTooltip>
-                                </lvc:PieChart>
-                            </Grid>
-                            <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
-
-                            <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="云课堂"
-                                                  ItemCount= "265"
-                                                  ItemStatus="1"
-                                                  ItemPercent="168%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="B站"
-                                                  ItemCount= "84"
-                                                  ItemStatus="1"
-                                                  ItemPercent="12%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="知乎"
-                                                  ItemCount= "30"
-                                                  ItemStatus="2"
-                                                  ItemPercent="13%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="抖音"
-                                                  ItemCount= "185"
-                                                  ItemStatus="1"
-                                                  ItemPercent="211%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="博客"
-                                                  ItemCount= "30"
-                                                  ItemStatus="2"
-                                                  ItemPercent="9%"/>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-                    <Border CornerRadius="5" Background="White">
-                        <Grid Height="70">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.20*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="0.25*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="0.55*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                            <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
-                            <Grid Grid.Column="2">
-                                <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
-                                    <lvc:PieChart.Series>
-                                        <lvc:PieSeries Title="云课堂" Values="70"/>
-                                        <lvc:PieSeries Title="B站" Values="30"/>
-                                        <lvc:PieSeries Title="知乎" Values="10"/>
-                                        <lvc:PieSeries Title="抖音" Values="40"/>
-                                        <lvc:PieSeries Title="博客" Values="8"/>
-                                    </lvc:PieChart.Series>
-                                    <lvc:PieChart.ChartLegend>
-                                        <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
-                                    </lvc:PieChart.ChartLegend>
-                                    <lvc:PieChart.DataTooltip >
-                                        <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
-                                    </lvc:PieChart.DataTooltip>
-                                </lvc:PieChart>
-                            </Grid>
-                            <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
-
-                            <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="云课堂"
-                                                  ItemCount= "265"
-                                                  ItemStatus="1"
-                                                  ItemPercent="168%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="B站"
-                                                  ItemCount= "84"
-                                                  ItemStatus="1"
-                                                  ItemPercent="12%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="知乎"
-                                                  ItemCount= "30"
-                                                  ItemStatus="2"
-                                                  ItemPercent="13%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="抖音"
-                                                  ItemCount= "185"
-                                                  ItemStatus="1"
-                                                  ItemPercent="211%"/>
-                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
-                                                  ItemName="博客"
-                                                  ItemCount= "30"
-                                                  ItemStatus="2"
-                                                  ItemPercent="9%"/>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
+                    <TextBlock Margin="20,0,0,0" Grid.Row="0" Text="详情" Foreground="Green" VerticalAlignment="Center">
+                   <Hyperlink ></Hyperlink>
+                    </TextBlock>
                 </StackPanel>
 
+
+
+                <!--课程总览部分-->
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding CourseOverViewItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="5" Background="White" Margin="0,5">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FF555558" BlurRadius="5" ShadowDepth="0.2"/>
+                                </Border.Effect>
+                                <Grid Height="70">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="240"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding CourseName}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                                    <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+
+                                    <!--平台统计饼图-->
+                                    <Grid Grid.Column="2">
+                                        <lvc:PieChart InnerRadius="18" LegendLocation="Left" FontSize="9" Series="{Binding PieSeriesCollection}">
+                                            <lvc:PieChart.ChartLegend>
+                                                <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
+                                            </lvc:PieChart.ChartLegend>
+                                            <lvc:PieChart.DataTooltip >
+                                                <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
+                                            </lvc:PieChart.DataTooltip>
+                                        </lvc:PieChart>
+                                    </Grid>
+                                    <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+
+                                    <!--平台增长数据-->
+                                    <ItemsControl Grid.Column="4" ItemsSource="{Binding PlatformStats}" Margin="30,0" VerticalAlignment="Center">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <!-- ItemWidth/ItemHeight：固定槽位；排不下时 WrapPanel 自动换行 -->
+                                                <WrapPanel Orientation="Horizontal" ItemWidth="100" ItemHeight="50"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0"
+                                                   ItemName="{Binding Name}"
+                                                   ItemCount= "{Binding Count}"
+                                                   ItemStatus="{Binding Status}"
+                                                   ItemPercent="{Binding Percent}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <!--<StackPanel Grid.Row="1">
+                    <Border CornerRadius="5" Background="White">
+                        <Grid Height="70">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.20*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="0.55*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+                            <Grid Grid.Column="2">
+                                <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
+                                    <lvc:PieChart.Series>
+                                        <lvc:PieSeries Title="云课堂" Values="70"/>
+                                        <lvc:PieSeries Title="B站" Values="30"/>
+                                        <lvc:PieSeries Title="知乎" Values="10"/>
+                                        <lvc:PieSeries Title="抖音" Values="40"/>
+                                        <lvc:PieSeries Title="博客" Values="8"/>
+                                    </lvc:PieChart.Series>
+                                    <lvc:PieChart.ChartLegend>
+                                        <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
+                                    </lvc:PieChart.ChartLegend>
+                                    <lvc:PieChart.DataTooltip >
+                                        <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
+                                    </lvc:PieChart.DataTooltip>
+                                </lvc:PieChart>
+                            </Grid>
+                            <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+
+                            <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="云课堂"
+                                                  ItemCount= "265"
+                                                  ItemStatus="1"
+                                                  ItemPercent="168%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="B站"
+                                                  ItemCount= "84"
+                                                  ItemStatus="1"
+                                                  ItemPercent="12%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="知乎"
+                                                  ItemCount= "30"
+                                                  ItemStatus="2"
+                                                  ItemPercent="13%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="抖音"
+                                                  ItemCount= "185"
+                                                  ItemStatus="1"
+                                                  ItemPercent="211%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="博客"
+                                                  ItemCount= "30"
+                                                  ItemStatus="2"
+                                                  ItemPercent="9%"/>
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+                    <Border CornerRadius="5" Background="White">
+                        <Grid Height="70">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.20*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="0.55*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+                            <Grid Grid.Column="2">
+                                <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
+                                    <lvc:PieChart.Series>
+                                        <lvc:PieSeries Title="云课堂" Values="70"/>
+                                        <lvc:PieSeries Title="B站" Values="30"/>
+                                        <lvc:PieSeries Title="知乎" Values="10"/>
+                                        <lvc:PieSeries Title="抖音" Values="40"/>
+                                        <lvc:PieSeries Title="博客" Values="8"/>
+                                    </lvc:PieChart.Series>
+                                    <lvc:PieChart.ChartLegend>
+                                        <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
+                                    </lvc:PieChart.ChartLegend>
+                                    <lvc:PieChart.DataTooltip >
+                                        <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
+                                    </lvc:PieChart.DataTooltip>
+                                </lvc:PieChart>
+                            </Grid>
+                            <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+
+                            <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="云课堂"
+                                                  ItemCount= "265"
+                                                  ItemStatus="1"
+                                                  ItemPercent="168%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="B站"
+                                                  ItemCount= "84"
+                                                  ItemStatus="1"
+                                                  ItemPercent="12%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="知乎"
+                                                  ItemCount= "30"
+                                                  ItemStatus="2"
+                                                  ItemPercent="13%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="抖音"
+                                                  ItemCount= "185"
+                                                  ItemStatus="1"
+                                                  ItemPercent="211%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="博客"
+                                                  ItemCount= "30"
+                                                  ItemStatus="2"
+                                                  ItemPercent="9%"/>
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+                    <Border CornerRadius="5" Background="White">
+                        <Grid Height="70">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.20*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="0.55*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="C#/.NET架构师蜕变营" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <Border Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+                            <Grid Grid.Column="2">
+                                <lvc:PieChart InnerRadius="18" LegendLocation="Right" FontSize="9">
+                                    <lvc:PieChart.Series>
+                                        <lvc:PieSeries Title="云课堂" Values="70"/>
+                                        <lvc:PieSeries Title="B站" Values="30"/>
+                                        <lvc:PieSeries Title="知乎" Values="10"/>
+                                        <lvc:PieSeries Title="抖音" Values="40"/>
+                                        <lvc:PieSeries Title="博客" Values="8"/>
+                                    </lvc:PieChart.Series>
+                                    <lvc:PieChart.ChartLegend>
+                                        <lvc:DefaultLegend BulletSize="10"></lvc:DefaultLegend>
+                                    </lvc:PieChart.ChartLegend>
+                                    <lvc:PieChart.DataTooltip >
+                                        <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
+                                    </lvc:PieChart.DataTooltip>
+                                </lvc:PieChart>
+                            </Grid>
+                            <Border Grid.Column="3" HorizontalAlignment="Center" Margin="0,5" Width="1" Background="Gray" CornerRadius="1"></Border>
+
+                            <UniformGrid Grid.Column="4" Columns="5" Margin="50,0">
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="云课堂"
+                                                  ItemCount= "265"
+                                                  ItemStatus="1"
+                                                  ItemPercent="168%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="B站"
+                                                  ItemCount= "84"
+                                                  ItemStatus="1"
+                                                  ItemPercent="12%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="知乎"
+                                                  ItemCount= "30"
+                                                  ItemStatus="2"
+                                                  ItemPercent="13%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="抖音"
+                                                  ItemCount= "185"
+                                                  ItemStatus="1"
+                                                  ItemPercent="211%"/>
+                                <cuscon:CourseOverviewItemView HorizontalAlignment="Center"
+                                                  ItemName="博客"
+                                                  ItemCount= "30"
+                                                  ItemStatus="2"
+                                                  ItemPercent="9%"/>
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+                </StackPanel>-->
             </Grid>
         </Grid>
     </ScrollViewer>
