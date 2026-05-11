@@ -29,9 +29,12 @@
                     <Style x:Key="LoginRowIcon" TargetType="TextBlock">
                         <Setter Property="Grid.Column" Value="0"/>
                         <Setter Property="Height" Value="35"/>
-                        <Setter Property="FontSize" Value="35"/>
+                        <Setter Property="FontSize" Value="25"/>
                         <Setter Property="Opacity" Value="0.3"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="TextAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="0,5,0,0"/>
                         <Setter Property="FontFamily" Value="{StaticResource IconFont}"/>
                     </Style>
                     <!-- 和外框叠在一起时，常去掉输入框自带边框 -->
@@ -170,7 +173,7 @@
     <Border Margin="5,5" Background="White" CornerRadius="15"
              MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Border.Effect>
-            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Direction="0"/>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="3" Direction="0"/>
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
@@ -178,7 +181,11 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="120"/>
             </Grid.RowDefinitions>
-            <Border Grid.Row="0" Background="#FF2F3EFF" CornerRadius="15,15,0,0"></Border>
+            <Border Margin="0,0,0,0" Grid.Row="0" Background="#FF2F3EFF" CornerRadius="15,15,0,0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Direction="0"/>
+                </Border.Effect>
+            </Border>
             <Button Margin="0,5,5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="40" Height="30"
                Style="{StaticResource WindowControlButtonStyle}"
                Content="&#xe660;"
@@ -192,7 +199,7 @@
                     <Border.Effect>
                         <DropShadowEffect Color="White" ShadowDepth="0" BlurRadius="3" Direction="0"/>
                     </Border.Effect>
-                    <Border Width="90" Height="80" HorizontalAlignment="Center">
+                    <Border Width="90" Height="80" CornerRadius="50" HorizontalAlignment="Center">
                         <Border.Background>
                             <ImageBrush ImageSource="pack://application:,,,/BloomAdmin.Main;component/Assets/Images/Logo.png"/>
                         </Border.Background>

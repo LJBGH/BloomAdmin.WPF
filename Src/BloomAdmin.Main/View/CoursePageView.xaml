@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BloomAdmin.Main.View"
+             xmlns:custom="clr-namespace:BloomAdmin.Main.View.CustomControls"
+             xmlns:selecterTemplete="clr-namespace:BloomAdmin.Main.Common.SelecterTemplete"
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="800"
              FontFamily="Microsoft YaHei" FontWeight = "ExtraLight"
@@ -28,6 +30,76 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <DataTemplate x:Key="courseDataTemplete">
+            <Grid>
+                <Grid Height="80" Margin="0,8" Name="courseContent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <!--封面区-->
+                    <Border CornerRadius="5" ClipToBounds ="True">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding CoverUrl}" Stretch="UniformToFill" />
+                        </Border.Background>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="30,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  FontSize="18" VerticalAlignment="Center" >
+                       <Hyperlink Foreground="#333" FontWeight="Bold"
+                                  Command="{Binding DataContext.OpenCourseLinkCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CoursePageView}}}"
+                                  CommandParameter="{Binding CourseUrl}">
+                           <Hyperlink.Style>
+                               <Style>
+                                   <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+                                   <Style.Triggers>
+                                       <Trigger Property="Hyperlink.IsMouseOver" Value="True">
+                                           <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                       </Trigger> 
+                                   </Style.Triggers>
+                               </Style>
+                           </Hyperlink.Style>
+                           <TextBlock Text="{Binding CourseName}"/>
+                       </Hyperlink>
+                   </TextBlock>
+                            <StackPanel Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" >
+                                <ItemsControl ItemsSource="{Binding Teachers}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="10,0" Background="#CC808080" CornerRadius="5" >
+                                                <TextBlock Margin="8,3" Text="{Binding}"></TextBlock>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Margin="0,8,0,0" Foreground="#333" Text="{Binding CourseDescription}" 
+                  TextWrapping="Wrap" LineHeight="15"></TextBlock>
+                    </StackPanel>
+
+                    <!--操作区-->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+               <Hyperlink>详情</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+               <Hyperlink>删除</Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="skeletonDataTemplate">
+            <custom:SkeletonScreenPageView Margin="0,10"/>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
         <Grid>
@@ -125,76 +197,101 @@
                                     <VirtualizingStackPanel/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="80" Margin="0,8">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="120"/>
-                                        </Grid.ColumnDefinitions>
-                                        <!--封面区-->
-                                        <Border CornerRadius="5" ClipToBounds ="True">
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="{Binding CoverUrl}" Stretch="UniformToFill" />
-                                            </Border.Background>
-                                        </Border>
-                                        <StackPanel Grid.Column="1" Margin="30,0,0,0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock  FontSize="18" VerticalAlignment="Center" >
-                                                 <Hyperlink Foreground="#333" FontWeight="Bold"
-                                                            Command="{Binding DataContext.OpenCourseLinkCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CoursePageView}}}"
-                                                            CommandParameter="{Binding CourseUrl}">
-                                                     <Hyperlink.Style>
-                                                         <Style>
-                                                             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
-                                                             <Style.Triggers>
-                                                                 <Trigger Property="Hyperlink.IsMouseOver" Value="True">
-                                                                     <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
-                                                                 </Trigger> 
-                                                             </Style.Triggers>
-                                                         </Style>
-                                                     </Hyperlink.Style>
-                                                     <TextBlock Text="{Binding CourseName}"/>
-                                                 </Hyperlink>
-                                             </TextBlock>
-                                                <StackPanel Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" >
-                                                    <ItemsControl ItemsSource="{Binding Teachers}">
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <StackPanel Orientation="Horizontal"/>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Border Margin="10,0" Background="#CC808080" CornerRadius="5" >
-                                                                    <TextBlock Margin="8,3" Text="{Binding}"></TextBlock>
-                                                                </Border>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
+                            <ItemsControl.ItemTemplateSelector>
+                                <selecterTemplete:CourseDataTempleteSeleter
+                                    DefaultDataTemplete="{StaticResource courseDataTemplete}"
+                                    SkeletonDataTemplete ="{StaticResource skeletonDataTemplate}"
+                                    ></selecterTemplete:CourseDataTempleteSeleter>
+                            </ItemsControl.ItemTemplateSelector>
+                            <!--模版选择方式二-->
+                            <!--<ItemsControl.ItemTemplate>
+                                <DataTemplate x:Name="DefaultDataTemplate">
+                                    <Grid>
+                                        <Grid Height="80" Margin="0,8" Name="courseContent">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="120"/>
+                                            </Grid.ColumnDefinitions>
+                                            -->
+                            <!--封面区-->
+                            <!--
+                                            <Border CornerRadius="5" ClipToBounds ="True">
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="{Binding CoverUrl}" Stretch="UniformToFill" />
+                                                </Border.Background>
+                                            </Border>
+                                            <StackPanel Grid.Column="1" Margin="30,0,0,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  FontSize="18" VerticalAlignment="Center" >
+                                                     <Hyperlink Foreground="#333" FontWeight="Bold"
+                                                                Command="{Binding DataContext.OpenCourseLinkCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CoursePageView}}}"
+                                                                CommandParameter="{Binding CourseUrl}">
+                                                         <Hyperlink.Style>
+                                                             <Style>
+                                                                 <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+                                                                 <Style.Triggers>
+                                                                     <Trigger Property="Hyperlink.IsMouseOver" Value="True">
+                                                                         <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                                                     </Trigger> 
+                                                                 </Style.Triggers>
+                                                             </Style>
+                                                         </Hyperlink.Style>
+                                                         <TextBlock Text="{Binding CourseName}"/>
+                                                     </Hyperlink>
+                                                 </TextBlock>
+                                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" >
+                                                        <ItemsControl ItemsSource="{Binding Teachers}">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <StackPanel Orientation="Horizontal"/>
+                                                                </ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border Margin="10,0" Background="#CC808080" CornerRadius="5" >
+                                                                        <TextBlock Margin="8,3" Text="{Binding}"></TextBlock>
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </StackPanel>
                                                 </StackPanel>
+                                                <TextBlock Margin="0,8,0,0" Foreground="#333" Text="{Binding CourseDescription}" 
+                                                TextWrapping="Wrap" LineHeight="15"></TextBlock>
                                             </StackPanel>
-                                            <TextBlock Margin="0,8,0,0" Foreground="#333" Text="{Binding CourseDescription}" 
-                                            TextWrapping="Wrap" LineHeight="15"></TextBlock>
-                                        </StackPanel>
 
-                                        <!--操作区-->
-                                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <TextBlock Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            -->
+                            <!--操作区-->
+                            <!--
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextBlock Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                                              <Hyperlink>详情</Hyperlink>
-                                            </TextBlock>
-                                            <TextBlock Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                </TextBlock>
+                                                <TextBlock Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                                              <Hyperlink>删除</Hyperlink>
-                                            </TextBlock>
-                                        </StackPanel>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                        <custom:SkeletonScreenPageView x:Name="skeleton" Margin="0,10"/>
                                     </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding IsShowSkeleton}" Value="True">
+                                            <Setter Property="Visibility" TargetName="courseContent" Value="Collapsed"/>
+                                            <Setter Property="Visibility" TargetName="skeleton" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsShowSkeleton}" Value="False">
+                                            <Setter Property="Visibility" TargetName="courseContent" Value="Visible"/>
+                                            <Setter Property="Visibility" TargetName="skeleton" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
-                            </ItemsControl.ItemTemplate>
+                            </ItemsControl.ItemTemplate>-->
                         </ItemsControl>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
+
         </Grid>
     </Grid>
 </UserControl>

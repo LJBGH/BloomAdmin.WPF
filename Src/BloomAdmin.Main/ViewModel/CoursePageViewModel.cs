@@ -3,6 +3,7 @@ using BloomAdmin.Main.Expansion;
 using BloomAdmin.Main.Model;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows;
 
 namespace BloomAdmin.Main.ViewModel
 {
@@ -40,6 +41,8 @@ namespace BloomAdmin.Main.ViewModel
 
             InitCategory();
             InitCourseData();
+
+            DoCategorySwitch("全部");
         }
 
         // 打开链接
@@ -48,26 +51,51 @@ namespace BloomAdmin.Main.ViewModel
             Process.Start(new ProcessStartInfo(obj.ToString()) { UseShellExecute = true });
         }
 
+        /// <summary>
+        /// 切换类目
+        /// </summary>
+        /// <param name="obj"></param>
         private void DoCategorySwitch(object obj)
         {
-            var category = obj.ToString();
-            if (category.IsNotNull())
+            CourseItems.Clear();
+            for (int i = 0; i < 10; i++)
             {
-                CourseItems.Clear();
-                List<CourseModel> courses = new List<CourseModel>();
-                if (category == "全部")
-                {
-                    courses = AllCourseList.ToList();
-                }
-                else 
-                {
-                    courses = AllCourseList.Where(x => x.CourseName.Contains(category) || x.Teachers.Contains(category)).ToList();
-                }
+                CourseItems.Add(new CourseModel { IsShowSkeleton = true });
+            }
 
-                foreach (var course in courses)
+            try
+            {
+                Task.Run(async () =>
                 {
-                    CourseItems.Add(course);
-                }
+                    var category = obj.ToString();
+                    if (category.IsNotNull())
+                    {
+
+                        List<CourseModel> courses = new List<CourseModel>();
+                        if (category == "全部")
+                        {
+                            courses = AllCourseList.ToList();
+                        }
+                        else
+                        {
+                            courses = AllCourseList.Where(x => x.CourseName.Contains(category) || x.Teachers.Contains(category)).ToList();
+                        }
+
+                        await Task.Delay(3000);
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            CourseItems.Clear();
+                            foreach (var course in courses)
+                            {
+                                CourseItems.Add(course);
+                            }
+                        });
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 

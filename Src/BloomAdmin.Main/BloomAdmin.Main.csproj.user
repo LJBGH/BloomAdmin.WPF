@@ -10,6 +10,9 @@
     <Compile Update="View\CoursePageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\CustomControls\SkeletonScreenPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\CustomControls\CourseOverviewItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

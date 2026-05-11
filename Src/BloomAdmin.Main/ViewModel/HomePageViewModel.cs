@@ -22,6 +22,15 @@ namespace BloomAdmin.Main.ViewModel
             set { _platformCount = value; this.DoNotify(); }
         }
 
+        private int _instrumentValue;
+
+        public int InstrumentValue
+        {
+            get { return _instrumentValue; }
+            set { _instrumentValue = value; this.DoNotify(); }
+        }
+
+
         List<Task> taskLsit;
         private bool isStart;
         Random rand = new Random();
@@ -130,10 +139,21 @@ namespace BloomAdmin.Main.ViewModel
                 }
             });
 
+            var task5 = Task.Run(async () =>
+            {
+                while (isStart)
+                {
+                    int instrumentValue = rand.Next(0, 100);
+                    InstrumentValue = instrumentValue;
+                    await Task.Delay(1000);
+                }
+            });
+
             taskLsit.Add(task1);
             taskLsit.Add(task2);
             taskLsit.Add(task3);
             taskLsit.Add(task4);
+            taskLsit.Add(task5);
         }
         private ChartValues<double> RandomDatas()
         {

@@ -24,6 +24,10 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.7" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\BloomAdmin.Controls\BloomAdmin.Controls.csproj" />
+	</ItemGroup>
+
 	<!-- 嵌入程序集：XAML 里用 /Assets/... 或 /程序集名;component/Assets/... -->
 	<ItemGroup>
 		<Resource Include="Assets\Fonts\iconfont.ttf">

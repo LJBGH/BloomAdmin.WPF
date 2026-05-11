@@ -7,6 +7,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Ellipse Fill="{Binding PlateBackground,RelativeSource= {RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" Name="backEllipse"></Ellipse>
+        <Canvas Name="minCanvas" 
+                Width="{Binding Width,ElementName=backEllipse}"
+                Height="{Binding Height,ElementName=backEllipse}">
+        </Canvas>
+        <Path Data="" Stroke="{Binding DotBrush,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" StrokeThickness="4" Name="circle"
+              StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+              Width="{Binding Width,ElementName=backEllipse}"
+              Height="{Binding Height,ElementName=backEllipse}"
+              RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <RotateTransform Angle="-45"></RotateTransform>
+            </Path.RenderTransform>
+        </Path>
+
+        <Path Data="" Fill="{Binding PointerBrush, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Name="pointer"
+             Width="{Binding Width,ElementName=backEllipse}"
+             Height="{Binding Height,ElementName=backEllipse}"
+             RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <RotateTransform Angle="-45" x:Name="rtPointer"></RotateTransform>
+            </Path.RenderTransform>
+        </Path>
+        <Border Width="25" Height="25" CornerRadius="15" Background="{Binding DotBrush,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
+        </Border>
     </Grid>
 </UserControl>
