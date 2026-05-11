@@ -238,7 +238,7 @@
                             <ImageBrush  ImageSource="{Binding UserModel.Avatar}"/>
                         </Border.Background>
                     </Border>
-                    <Grid Grid.Row="1"  Margin="10,0"  Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Grid Grid.Row="1"  Margin="10,0"  Height="300" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <Grid.Resources>
                             <Style TargetType="RadioButton">
                                 <Setter Property="Margin" Value="10,0"/>
@@ -254,6 +254,8 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal">
@@ -275,6 +277,34 @@
                             <TextBlock Text="邮箱"></TextBlock>
                             <TextBlock Text="{Binding UserModel.Email}" ></TextBlock>
                         </StackPanel>
+                        <Button Grid.Row="5"
+                                Content="退出登录"
+                                Cursor="Hand"
+                                Width="80" 
+                                Foreground="#333"
+                                Command="{Binding LoginOutCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" Background="#CCBDBDBD" CornerRadius="5" 
+                                            BorderThickness="1"
+                                            BorderBrush="#555">
+                                        <ContentPresenter
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"
+                                            ContentSource="Content"
+                                            RecognizesAccessKey="True"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#CCE4EAE4"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#5F8E8D92"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </Grid>
                 </Grid>
             </Border>

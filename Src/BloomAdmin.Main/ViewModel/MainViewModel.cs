@@ -3,6 +3,7 @@ using BloomAdmin.Main.DataAccess;
 using BloomAdmin.Main.Model;
 using BloomAdmin.Main.View;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using System.Windows;
 
@@ -11,10 +12,10 @@ namespace BloomAdmin.Main.ViewModel
     public class MainViewModel : NotifyBase
     {
         public UserModel UserModel { get; set; }
+
         public CommandBase NavChangedCommand { get; set; }
 
-        private readonly IServiceProvider _services;
-
+        public CommandBase LoginOutCommand { get; set; }
 
         //主区域内容
         private FrameworkElement _mainContent;
@@ -33,10 +34,12 @@ namespace BloomAdmin.Main.ViewModel
         }
 
         private readonly IDbContextFactory<AppDbContext> _dbContextFactory;
+        private readonly IServiceProvider _services;
 
         public MainViewModel(IDbContextFactory<AppDbContext> dbContextFactory, IServiceProvider services, MainView mainView)
         {
             _services = services;
+            _dbContextFactory = dbContextFactory;
 
             UserModel = new UserModel
             {
@@ -47,8 +50,6 @@ namespace BloomAdmin.Main.ViewModel
                 Avatar = GlobalValues.UserInfo.Avatar,
             };
 
-            _dbContextFactory = dbContextFactory;
-
             // 导航栏切换事件绑定
             this.NavChangedCommand = new CommandBase
             {
@@ -56,7 +57,23 @@ namespace BloomAdmin.Main.ViewModel
                 DoCanExecute = new Func<object, bool>((o) => { return true; })
             };
 
+            this.LoginOutCommand = new CommandBase
+            {
+                DoExecute = new Action<object>((o) => DoLoginOut(o)),
+                DoCanExecute = new Func<object, bool>((o) => { return true; })
+            };
+
             DoNavChanged("HomePageView");
+        }
+
+        private void DoLoginOut(object obj)
+        {
+            // 退出登录逻辑
+            var loginView = _services.GetRequiredService<LoginView>();
+            loginView.Show();
+
+            // 关闭当前主窗口
+            Application.Current.MainWindow.Close();
         }
 
         /// <summary>
