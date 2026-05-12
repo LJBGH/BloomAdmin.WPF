@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -133,7 +133,6 @@ namespace BloomAdmin.Controls
             }
         }
 
-
         public Instrument()
         {
             InitializeComponent();
@@ -148,12 +147,18 @@ namespace BloomAdmin.Controls
             double minSize = Math.Min(this.RenderSize.Width, this.RenderSize.Height);
             this.backEllipse.Width = minSize;
             this.backEllipse.Height = minSize;
+            // 首次 OnValueChanged 往往在椭圆宽高仍为 NaN 时触发，此处尺寸已就绪需重绘
+            if (minSize > 0)
+                Refresh();
         }
 
         private void Refresh()
         {
             double radius = this.backEllipse.Width / 2;
-            if (double.IsNaN(radius)) return;
+            if (double.IsNaN(radius) || radius <= 0)
+                return;
+            if (Maximm == Minimm)
+                return;
             this.minCanvas.Children.Clear();
 
             double step = 270.0 / (Maximm - Minimm);

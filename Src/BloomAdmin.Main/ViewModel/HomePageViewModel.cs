@@ -1,4 +1,4 @@
-﻿using BloomAdmin.Main.Common;
+using BloomAdmin.Main.Common;
 using BloomAdmin.Main.DataAccess;
 using BloomAdmin.Main.Model;
 using LiveCharts;
@@ -48,6 +48,12 @@ namespace BloomAdmin.Main.ViewModel
             InitCourseData();
             taskLsit = new List<Task>();
             isStart = true;
+
+            // 避免 MetricCard 绑定 null，在后台任务首次写入前长时间无图
+            DefaultData1 = RandomDatas();
+            DefaultData2 = RandomDatas();
+            DefaultData3 = RandomDatas();
+            DefaultData4 = RandomDatas();
             MetricStart();
         }
 

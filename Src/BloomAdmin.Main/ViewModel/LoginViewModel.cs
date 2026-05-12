@@ -54,6 +54,8 @@ namespace BloomAdmin.Main.ViewModel
             ? Brushes.Transparent
             : (ErrorMessage.Contains("成功") ? Brushes.Green : Brushes.Red);
 
+        private bool IsCanLogin;
+
         public LoginViewModel(IDbContextFactory<AppDbContext> dbContext, IServiceProvider services, Window loginWindow,
             ICaptcha captcha)
         {
@@ -81,7 +83,7 @@ namespace BloomAdmin.Main.ViewModel
             this.LoginCommand = new CommandBase
             {
                 DoExecute = async obj => await DoLoginAsync(obj),
-                DoCanExecute = new Func<object, bool>((obj) => { return true; })
+                DoCanExecute = new Func<object, bool>((obj) => { return IsCanLogin; })
             };
 
             this.CaptchaCommand = new CommandBase
@@ -97,6 +99,8 @@ namespace BloomAdmin.Main.ViewModel
         /// <param name="obj"></param>
         private void DoCaptcha(object obj)
         {
+            IsCanLogin = true;
+            LoginCommand.RaiseCanExecuteChanged();
             var captchaData = _captcha.Generate(new Guid().ToString());
             Console.WriteLine($"验证码：data:image/png;base64,{captchaData.Base64}");
             this.LoginModel.CaptchaImage = MemeryToBitmapImage(captchaData.Bytes);

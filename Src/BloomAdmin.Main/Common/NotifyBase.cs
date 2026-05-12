@@ -7,7 +7,6 @@ namespace BloomAdmin.Main.Common
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-
         /// <summary>
         /// 属性值改变时调用此方法，触发 PropertyChanged 事件，通知 UI 更新绑定的属性值。
         /// </summary>
